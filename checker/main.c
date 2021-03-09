@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:51:53 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 19:53:50 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int main(int ac, const char **av)
 
 	a = (t_stack){ .capacity=(size_t)(ac-1), .lenght=(size_t)(ac-1) };
 	b = (t_stack){ .capacity=(size_t)(ac-1), .lenght=0ul };
-	stack_init(&a, av);
-	stack_init(&b, av);
+	if (!stack_init(&a, av) || stack_init(&b, av))
+		return (EXIT_FAILURE);
 	while (get_next_line(STDIN_FILENO, line) > 0)
 	{
 		execute_operation(&a, &b, line);
