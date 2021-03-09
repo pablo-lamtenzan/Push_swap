@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:55:50 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 21:18:09 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void checker(t_stack *const a, t_stack *const b)
 	
 	if (b->lenght != 0ul)
 	{
-		write(STDOUT_FILENO, ko, sizeof(ko));
+		write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 		return ;
 	}
 	cmp = LONG_MAX;
@@ -32,12 +32,12 @@ static void checker(t_stack *const a, t_stack *const b)
 	{
 		if ((long)a->data[it] >= cmp)
 		{
-			write(STDOUT_FILENO, ko, sizeof(ko));
+			write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 			return ;
 		}
 		cmp = a->data[it];
 	}
-	write (STDOUT_FILENO, ok, sizeof(ok));
+	write (STDOUT_FILENO, ok, sizeof(ok) - 1ul);
 }
 
 static void execute_operation(t_stack *const a, t_stack *const b, char* line)

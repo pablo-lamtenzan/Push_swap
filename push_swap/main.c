@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:49:00 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 21:06:44 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 21:17:46 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void print_operation(t_operation op)
 	while (operation(i) != op)
 		i++;
 	char_op = char_operation(i);
-	write(STDOUT_FILENO, char_op, sizeof(char_op));
-	write(STDOUT_FILENO, endl, sizeof(endl));
+	write(STDOUT_FILENO, char_op, sizeof(char_op) - 1ul);
+	write(STDOUT_FILENO, endl, sizeof(endl) - 1ul);
 }
 
 void sort_chunk(int *target, int *dest, size_t range)
