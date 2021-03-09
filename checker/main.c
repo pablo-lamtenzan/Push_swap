@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:53:50 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 19:55:50 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void checker(t_stack *const a, t_stack *const b)
 	it = -1;
 	while (++it < a->lenght)
 	{
-		if (a->data[it] >= cmp)
+		if ((long)a->data[it] >= cmp)
 		{
 			write(STDOUT_FILENO, ko, sizeof(ko));
 			return ;
