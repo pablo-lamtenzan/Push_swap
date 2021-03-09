@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:49:00 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 21:17:46 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 21:36:54 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ void sort_chunk(int *target, int *dest, size_t range)
 	it = 0;
 	// TO DO: tomorrow, find the better way to solve this.
 	// Just have to find the most optimal way to sort those chunks.
+
+	// 1) Find smallest index
+	// 2) See if index =< (range / 2) left is the shorter way to the top
+	// 3) Else right is the shorter way top
+	// 4) To find the top rotate and swap if necesary 1st and 2nd
+	// 5) Push to dest
+	// 6) Repeat until range element had been pushed
 }
 
 // just copy and sort by range of 2, 4, 8, 16, ...
