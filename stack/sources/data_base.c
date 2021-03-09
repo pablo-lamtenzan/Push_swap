@@ -6,13 +6,13 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:54:42 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 18:57:37 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 19:35:40 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stack.h>
 
-inline t_operation *const	operation(size_t index)
+inline t_operation		operation(size_t index)
 {
 	static const t_operation operations[] = {
 		&sa,

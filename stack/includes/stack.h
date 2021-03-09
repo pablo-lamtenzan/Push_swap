@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:41:45 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:11:54 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 19:35:21 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void				rrr(t_stack *const a, t_stack *const b);
 ** Getters for 42 Norme
 */
 
-t_operation *const	operation(size_t index);
+t_operation			operation(size_t index);
 const char*const	char_operation(size_t index);
 

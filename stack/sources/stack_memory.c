@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:56:08 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 17:48:23 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 19:29:23 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*stack_init(t_stack *const target, const char **raw)
 	size_t count2;
 
 	if (!(target->data = (int*)malloc(sizeof(int) * target->capacity)))
-		return ((void*)0x0);
+		return ((void*)0x0ul);
 
 	// This algorithm is so ugly think a litle and find a way to use only one iterator
 	count = 0ul;
@@ -29,7 +29,7 @@ void	*stack_init(t_stack *const target, const char **raw)
 	while (count++ < target->lenght)
 		target->data[count] = atoi((const char*)raw[count2--]);
 
-	return ((void*)0x1);
+	return ((void*)0x1ul);
 }
 
 inline void	stack_clear(t_stack *target)
