@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:27:37 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 17:26:23 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 17:33:25 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ inline void	rotate_up(int *const raw, size_t lenght)
 	const int saved = raw[lenght];
 
 	it = 0ul;
-	while (++it < lenght)
+	while (++it <= lenght)
 		raw[it] = raw[it - 1ul];
 	raw[0ul] = saved;
 }
