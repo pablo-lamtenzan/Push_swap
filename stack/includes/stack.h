@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:41:45 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 17:17:50 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 18:59:27 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void				s_swap(t_stack *const s);
 void				s_push(t_stack *const lhs, t_stack *const rhs);
 void				s_rotate(t_stack *const s);
 void				s_reverse_rotate(t_stack *const s);
+void 				move_all_to_the_middle(t_val *const start_alloc, t_val **esp,
+					t_val **ebp, const t_val *const end_alloc);
 
 /*
 ** Specilised functions

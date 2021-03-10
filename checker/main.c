@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 17:55:33 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 18:24:25 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static void execute_operation(t_stack *const a, t_stack *const b, char* line)
 // include / change strcmp
 int main(int ac, const char **av)
 {
-	t_stack a;
-	t_stack b;
-	char *line;
+	t_stack	a;
+	t_stack	b;
+	char	*line;
 
 	if (!stack_init_unsorted(&a, av, ac - 1) || stack_init_auxliar(&b, ac - 1))
 		return (1);
@@ -69,7 +69,7 @@ int main(int ac, const char **av)
 	}
 	free(line);
 	checker(&a, &b);
-	stack_clear(&a);
-	stack_clear(&b);
+	free(a.start_alloc);
+	free(b.start_alloc);
 	return (0);
 }

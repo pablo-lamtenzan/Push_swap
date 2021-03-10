@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:22:13 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 17:39:42 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 18:14:00 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 #  define VALUE_TYPE int
 # endif
 
-# ifndef VALUE_TYPE
-#  ifndef t_val
+# ifndef VALUE_TYPE || t_val
     typedef VALUE_TYPE	t_val;
-#  endif
 # endif
 
 void					swap(t_val *const a, t_val *const b);
