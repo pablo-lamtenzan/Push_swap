@@ -6,13 +6,13 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:54:42 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 20:11:47 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:28:12 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stack.h>
 
-inline t_operation		operation(size_t index)
+inline t_operation		operation(t_umax index)
 {
 	static const t_operation operations[] = {
 		&sa,
@@ -32,7 +32,7 @@ inline t_operation		operation(size_t index)
 		operations[index] : (void*)0x0ul);
 }
 
-inline const char*const		char_operation(size_t index)
+inline const char*const	char_operation(t_umax index)
 {
 	static const char *const char_operations[] = {
 		"sa",

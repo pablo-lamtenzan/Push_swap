@@ -6,12 +6,13 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 19:20:25 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 20:47:04 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:28:47 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <portable_macros.h>
+# include <portable_types.h>
 # include <sys/types.h>
-# include <stdint.h>
 
 /*
 ** Specilisated atoi version made for signed 32int.
@@ -19,11 +20,11 @@
 ** NOTE: It use require a int32 cast.
 */
 
-long	ft_atoi(const char* s)
+t_smax			ft_atoi(const char* s)
 {
-	size_t value;
-	size_t it;
-	char sign;
+	t_umax	value;
+	t_umax	it;
+	char	sign;
 
 	value = 0;
 	it = -1;
@@ -38,7 +39,7 @@ long	ft_atoi(const char* s)
 	return (INT64_MIN);
 }
 
-size_t	ft_strcmp(const char *s1, const char *s2)
+inline t_smax	ft_strcmp(const char *s1, const char *s2)
 {
 	while (s1 && s2 && *s1 && *s2 && *s1 == *s2)
 	{

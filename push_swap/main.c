@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:49:00 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 20:15:13 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:26:51 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 void print_operation(t_operation op)
 {
-	size_t						i;
+	t_umax						i;
 	static const char *const	char_operations[] = {
 		"sa\n", "sb\n", "ss\n", "pa\n", "pb\n", "ra\n",
 		"rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"
 	};
-	
+
 	i = -1;
 	while (operation(++i) != op)
 		;
 	write(STDOUT_FILENO, char_operations[i], sizeof(char_operations[i]) - 1ul);
 }
 
-void sort_chunk(t_val *target, t_val *dest, size_t range)
+void sort_chunk(t_val *target, t_val *dest, t_umax range)
 {
-	size_t it;
+	t_umax it;
 
 	it = 0;
 	// TO DO: tomorrow, find the better way to solve this.
@@ -47,9 +47,9 @@ void sort_chunk(t_val *target, t_val *dest, size_t range)
 
 void bottom_up_merge_sort_int32(t_stack *const a, t_stack *const b)
 {
-	const size_t lenght = a->ebp - a->esp;
-	size_t range;
-	size_t it;
+	const t_umax	lenght = a->ebp - a->esp;
+	t_umax			range;
+	t_umax			it;
 
 	range = 2ul;
 	while (range < lenght)
@@ -64,9 +64,9 @@ void bottom_up_merge_sort_int32(t_stack *const a, t_stack *const b)
 
 int main(int ac, const char **av)
 {
-	static const char error[] = "Error\n";
-	t_stack a;
-	t_stack b;
+	static const char	error[] = "Error\n";
+	t_stack				a;
+	t_stack				b;
 
 	if (!stack_init_unsorted(&a, av, ac - 1)
 	|| !stack_init_auxliar(&b, ac - 1))

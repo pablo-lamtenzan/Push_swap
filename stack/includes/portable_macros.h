@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libc.h                                             :+:      :+:    :+:   */
+/*   portable_macros.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/10 19:31:58 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 21:16:24 by pablo            ###   ########lyon.fr   */
+/*   Created: 2021/03/10 21:00:11 by pablo             #+#    #+#             */
+/*   Updated: 2021/03/10 21:22:15 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # pragma once
 
-# include <sys/types.h>
-# include <portable_types.h>
+# include <inttypes.h>
 
-t_smax		ft_atoi(const char* s);
-t_smax		ft_strcmp(const char *s1, const char *s2);
+/*
+** Cross plateform solution for
+** macros variation into architectures
+*/
+
+# ifndef INT32_MAX
+ # define INT32_MAX 0x7fffffff
+#endif
+
+# ifndef INT32_MIN
+ # define INT32_MIN 0x80000000
+# endif
+
+# ifndef INT64_MIN
+ # define INT64_MIN 0x7fffffffffffffffl
+# endif
+
+# ifndef INT64_MAX
+ # define INT_64_MAX 0x800000000000000
+# endif

@@ -6,28 +6,28 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 20:48:17 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:27:39 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stack.h>
 # include <libc.h>
+# include <portable_macros.h>
 # include <unistd.h>
-# include <limits.h>
 
 static void checker(t_stack *const a, t_stack *const b)
 {
-	static const char ok[] = "OK";
-	static const char ko[] = "KO";
-	long cmp;
-	size_t it;
+	static const char	ok[] = "OK";
+	static const char	ko[] = "KO";
+	t_smax				cmp;
+	t_umax				it;
 
 	if (b->ebp != b->esp)
 	{
 		write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 		return ;
 	}
-	cmp = LONG_MAX;
+	cmp = INT64_MAX;
 	it = -1;
 	while (++it < a->ebp - a->esp)
 	{
@@ -38,12 +38,12 @@ static void checker(t_stack *const a, t_stack *const b)
 		}
 		cmp = (long)a->esp[it];
 	}
-	write (STDOUT_FILENO, ok, sizeof(ok) - 1ul);
+	write(STDOUT_FILENO, ok, sizeof(ok) - 1ul);
 }
 
 static void execute_operation(t_stack *const a, t_stack *const b, char* line)
 {
-	size_t it;
+	t_umax it;
 
 	it = -1;
 	while (ft_strcmp(line, char_operation(++it)))

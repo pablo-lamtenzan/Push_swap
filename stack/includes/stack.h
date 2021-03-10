@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:41:45 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 18:59:27 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:32:17 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # pragma once
 
+# include <portable_types.h>
 # include <sys/types.h>
 # include <stdbool.h>
 
@@ -24,34 +25,22 @@
 ** Stack lib member types
 */
 
-#define VALUE_TYPE int
-
-typedef VALUE_TYPE	t_val;
-
 typedef struct		s_stack
 {
-	// simple array
-	//int				*data;
-	//size_t			lenght;
-	//size_t			capacity;
-
-	// circular array
-	t_val				*start_alloc;
-	t_val				*esp;
-	t_val				*ebp;
-	t_val				*end_alloc;
+	t_val			*start_alloc;
+	t_val			*esp;
+	t_val			*ebp;
+	t_val			*end_alloc;
 }					t_stack;
 
 typedef void (*const t_operation)(t_stack*, t_stack*);
-
 
 /*
 ** Memory handlers
 */
 
-bool				stack_init_unsorted(t_stack *const target, const char **raw, size_t lenght);
-bool				stack_init_auxliar(t_stack *const target, size_t lenght);
-void				stack_clear(t_stack *target);
+bool				stack_init_unsorted(t_stack *const target, const char **raw, t_umax lenght);
+bool				stack_init_auxliar(t_stack *const target, t_umax lenght);
 
 /*
 ** Core functions
@@ -87,6 +76,6 @@ void				rrr(t_stack *const a, t_stack *const b);
 ** Getters for 42 Norme
 */
 
-t_operation			operation(size_t index);
-const char*const	char_operation(size_t index);
+t_operation			operation(t_umax index);
+const char*const	char_operation(t_umax index);
 
