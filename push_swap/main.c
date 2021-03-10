@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:49:00 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 18:05:05 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 20:15:13 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 
 void print_operation(t_operation op)
 {
-	size_t i = 0ul;
-	static char *char_op;
-	static const char endl[] = "\n";
-
-	while (operation(i) != op)
-		i++;
-	char_op = char_operation(i);
-	write(STDOUT_FILENO, char_op, sizeof(char_op) - 1ul);
-	write(STDOUT_FILENO, endl, sizeof(endl) - 1ul);
+	size_t						i;
+	static const char *const	char_operations[] = {
+		"sa\n", "sb\n", "ss\n", "pa\n", "pb\n", "ra\n",
+		"rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"
+	};
+	
+	i = -1;
+	while (operation(++i) != op)
+		;
+	write(STDOUT_FILENO, char_operations[i], sizeof(char_operations[i]) - 1ul);
 }
 
 void sort_chunk(t_val *target, t_val *dest, size_t range)
@@ -61,16 +62,17 @@ void bottom_up_merge_sort_int32(t_stack *const a, t_stack *const b)
 	}
 }
 
-// TO DO: Parse error handling
 int main(int ac, const char **av)
 {
+	static const char error[] = "Error\n";
 	t_stack a;
 	t_stack b;
 
-	if (!stack_init_unsorted(&a, av, ac - 1) || !stack_init_auxliar(&b, ac - 1))
-		return (1);
+	if (!stack_init_unsorted(&a, av, ac - 1)
+	|| !stack_init_auxliar(&b, ac - 1))
+		return (write(STDERR_FILENO, error, sizeof(error) - 1ul));
 	bottom_up_merge_sort_int32(&a, &b);
-	stack_clear(&a);
-	stack_clear(&b);
+	free(a.start_alloc);
+	free(b.start_alloc);
 	return (0);
 }
