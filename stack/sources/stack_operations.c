@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:15:48 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 18:58:50 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 19:10:52 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_val **ebp, const t_val *const end_alloc)
 
 inline void	s_swap(t_stack *const s)
 {
-	swap(s->esp, s->esp + 1ul);
+	if (s->ebp - s->esp > 1)
+		swap(s->esp, s->esp + 1ul);
 }
 
 inline void	s_push(t_stack *const dest, t_stack *const src)
@@ -62,10 +63,12 @@ inline void	s_push(t_stack *const dest, t_stack *const src)
 
 inline void	s_rotate(t_stack *const s)
 {
-	rotate_up(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
+	if (s->ebp - s->esp > 1)
+		rotate_up(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
 }
 
 inline void	s_reverse_rotate(t_stack *const s)
 {
-	rotate_down(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
+	if (s->ebp - s->esp > 1)
+		rotate_down(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
 }
