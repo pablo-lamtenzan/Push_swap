@@ -6,10 +6,11 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 19:31:58 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 19:34:18 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 20:47:39 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # pragma once
 
 long		ft_atoi(const char* s);
+size_t		ft_strcmp(const char *s1, const char *s2);

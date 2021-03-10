@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 19:20:25 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 19:30:57 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 20:47:04 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ long	ft_atoi(const char* s)
 	|| (sign < 0 && value >= INT32_MIN))
 		return (value * sign);
 	return (INT64_MIN);
+}
+
+size_t	ft_strcmp(const char *s1, const char *s2)
+{
+	while (s1 && s2 && *s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s2 - *s1);
 }
