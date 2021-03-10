@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/10 21:27:39 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 21:35:58 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static void checker(t_stack *const a, t_stack *const b)
 	it = -1;
 	while (++it < a->ebp - a->esp)
 	{
-		if ((long)a->esp[it] >= cmp)
+		if ((t_smax)a->esp[it] >= cmp)
 		{
 			write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 			return ;
 		}
-		cmp = (long)a->esp[it];
+		cmp = (t_smax)a->esp[it];
 	}
 	write(STDOUT_FILENO, ok, sizeof(ok) - 1ul);
 }
