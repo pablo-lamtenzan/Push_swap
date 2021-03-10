@@ -6,15 +6,16 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:27:37 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 17:48:08 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:40:20 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <stack.h>
 # include <fast_operations.h>
 
-inline void	swap(int *const a, int *const b)
+inline void	swap(t_val *const a, t_val *const b)
 {
-	int c;
+	t_val c;
 
 	if (a != b)
 	{
@@ -24,24 +25,16 @@ inline void	swap(int *const a, int *const b)
 	}
 }
 
-inline void	rotate_up(int *const raw, size_t lenght)
+inline void rotate_up(const t_val *const start_alloc, t_val **esp, t_val **ebp, const t_val *const end_alloc)
 {
-	size_t it;
-	const int saved = raw[lenght];
-
-	it = 0ul;
-	while (++it <= lenght)
-		raw[it] = raw[it - 1ul];
-	raw[0ul] = saved;
+	if (*ebp + 1ul == end_alloc)
+		move_all_to_the_middle(start_alloc, esp, ebp, end_alloc);
+	*(++(*ebp)) = *((*esp)++);
 }
 
-inline void	rotate_down(int *const raw, size_t lenght)
+inline void rotate_down(const t_val *const start_alloc, t_val **esp, t_val **ebp, const t_val *const end_alloc)
 {
-	size_t it;
-	const int saved = raw[0ul];
-
-	it = lenght;
-	while (--it >= 0)
-		raw[it] = raw[it + 1ul];
-	raw[lenght] = saved;
+	if (*esp - 1ul == start_alloc)
+		move_all_to_the_middle(start_alloc, esp, ebp, end_alloc);
+	*(--(*esp)) = *((*ebp)--);
 }

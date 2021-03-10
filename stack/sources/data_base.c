@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:54:42 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:35:40 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:31:41 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ inline t_operation		operation(size_t index)
 	};
 	
 	return (index < sizeof(operations) / sizeof(*operations) ?
-		operations[index] : NULL);
+		operations[index] : (void*)0x0ul);
 }
 
 inline const char*const		char_operation(size_t index)
@@ -49,5 +49,5 @@ inline const char*const		char_operation(size_t index)
 	};
 
 	return (index < sizeof(char_operations) / sizeof(*char_operations) ?
-		char_operations[index] : NULL);
+		char_operations[index] : (void*)0x0ul);
 }

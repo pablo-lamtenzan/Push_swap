@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:49:00 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 21:36:54 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 18:05:05 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void print_operation(t_operation op)
 	write(STDOUT_FILENO, endl, sizeof(endl) - 1ul);
 }
 
-void sort_chunk(int *target, int *dest, size_t range)
+void sort_chunk(t_val *target, t_val *dest, size_t range)
 {
 	size_t it;
 
@@ -44,8 +44,9 @@ void sort_chunk(int *target, int *dest, size_t range)
 
 // just copy and sort by range of 2, 4, 8, 16, ...
 
-void bottom_up_merge_sort_int32(int *data, int *aux, size_t lenght)
+void bottom_up_merge_sort_int32(t_stack *const a, t_stack *const b)
 {
+	const size_t lenght = a->ebp - a->esp;
 	size_t range;
 	size_t it;
 
@@ -53,8 +54,9 @@ void bottom_up_merge_sort_int32(int *data, int *aux, size_t lenght)
 	while (range < lenght)
 	{
 		it = 0ul;
+		// TO DO: Think about this algorithm, not enought good
 		while (it < lenght && (it += range))
-			sort_chunk(&data[it], &aux[it], range);
+			;//sort_chunk(&data[it], &aux[it], range);
 		range *= 2ul;
 	}
 }
@@ -65,12 +67,10 @@ int main(int ac, const char **av)
 	t_stack a;
 	t_stack b;
 
-	a = (t_stack){ .capacity=(size_t)(ac-1), .lenght=ac };
-	b = (t_stack){ .capacity=(size_t)(ac-1), .lenght=0ul };
-	if (!stack_init(&a, av) || !stack_init(&b, av))
-		return (EXIT_FAILURE);
-	bottom_up_merge_sort_int32(a.data, b.data, a.lenght);
+	if (!stack_init_unsorted(&a, av, ac - 1) || !stack_init_auxliar(&b, ac - 1))
+		return (1);
+	bottom_up_merge_sort_int32(&a, &b);
 	stack_clear(&a);
 	stack_clear(&b);
-	return (EXIT_SUCCESS);
+	return (0);
 }

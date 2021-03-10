@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:22:13 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 17:10:35 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:39:42 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 # include <sys/types.h>
 
-void	swap(int *const a, int *const b);
+# ifndef VALUE_TYPE
+#  define VALUE_TYPE int
+# endif
 
-// See if i can use only one fucntion to rotate
-void	rotate_up(int *const raw, size_t lenght);
-void	rotate_down(int *const raw, size_t lenght);
+# ifndef VALUE_TYPE
+#  ifndef t_val
+    typedef VALUE_TYPE	t_val;
+#  endif
+# endif
 
+void					swap(t_val *const a, t_val *const b);
+void 					rotate_up(const t_val *const start_alloc, t_val **esp,
+						t_val **ebp, const t_val *const end_alloc);
+void 					rotate_down(const t_val *const start_alloc, t_val **esp,
+						t_val **ebp, const t_val *const end_alloc);

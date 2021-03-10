@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:01:18 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 21:18:09 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:55:33 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ static void checker(t_stack *const a, t_stack *const b)
 	static const char ko[] = "KO";
 	long cmp;
 	size_t it;
-	
-	if (b->lenght != 0ul)
+
+	if (b->ebp != b->esp)
 	{
 		write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 		return ;
 	}
 	cmp = LONG_MAX;
 	it = -1;
-	while (++it < a->lenght)
+	while (++it < a->ebp - a->esp)
 	{
-		if ((long)a->data[it] >= cmp)
+		if ((long)a->esp[it] >= cmp)
 		{
 			write(STDOUT_FILENO, ko, sizeof(ko) - 1ul);
 			return ;
 		}
-		cmp = a->data[it];
+		cmp = (long)a->esp[it];
 	}
 	write (STDOUT_FILENO, ok, sizeof(ok) - 1ul);
 }
@@ -60,10 +60,8 @@ int main(int ac, const char **av)
 	t_stack b;
 	char *line;
 
-	a = (t_stack){ .capacity=(size_t)(ac-1), .lenght=(size_t)(ac-1) };
-	b = (t_stack){ .capacity=(size_t)(ac-1), .lenght=0ul };
-	if (!stack_init(&a, av) || stack_init(&b, av))
-		return (EXIT_FAILURE);
+	if (!stack_init_unsorted(&a, av, ac - 1) || stack_init_auxliar(&b, ac - 1))
+		return (1);
 	while (get_next_line(STDIN_FILENO, line) > 0)
 	{
 		execute_operation(&a, &b, line);
@@ -73,5 +71,5 @@ int main(int ac, const char **av)
 	checker(&a, &b);
 	stack_clear(&a);
 	stack_clear(&b);
-	return (EXIT_SUCCESS);
+	return (0);
 }

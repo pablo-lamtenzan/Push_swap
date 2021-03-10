@@ -6,7 +6,7 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:15:48 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 18:34:34 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:49:31 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 
 inline void	s_swap(t_stack *const s)
 {
-	if (s->lenght > 1ul)
-		swap(&s->data[s->lenght], &s->data[s->lenght - 1ul]);
+	swap(s->esp, s->esp + 1ul);
 }
 
-inline void	s_push(t_stack *const lhs, t_stack *const rhs)
+inline void	s_push(t_stack *const dest, t_stack *const src)
 {
-	if (rhs->lenght != 0ul)
+	if (src->ebp != src->esp)
 	{
-		lhs->data[++lhs->lenght] = rhs->data[rhs->lenght];
-		rhs->data[rhs->lenght--] = 0;
+		if (dest->esp - 1ul == dest->start_alloc)
+			move_all_to_the_middle(dest->start_alloc, &dest->esp,
+			&dest->ebp, dest->end_alloc);
+		*(--dest->esp) = *(src->esp++);
 	}
 }
 
 inline void	s_rotate(t_stack *const s)
 {
-	rotate_up(s->data, s->lenght - 1ul);
+	rotate_up(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
 }
 
 inline void	s_reverse_rotate(t_stack *const s)
 {
-	rotate_down(s->lenght, s->lenght - 1ul);
+	rotate_down(s->start_alloc, &s->esp, &s->ebp, s->end_alloc);
 }

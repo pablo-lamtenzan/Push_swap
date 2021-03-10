@@ -6,23 +6,40 @@
 /*   By: pablo <pablo@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:41:45 by pablo             #+#    #+#             */
-/*   Updated: 2021/03/09 19:35:21 by pablo            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 17:17:50 by pablo            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TOTAL OPERATIONS per data structure
+// linear dlinked list: push 4, rot 4, swap 2
+// circular dlinked list: push 7, rot 1, swap 2
+// circular array: push 2, rot 3, swap 2 (but sometimes move all values at some point)
+
 # pragma once
 
-# include <stdlib.h>
+# include <sys/types.h>
+# include <stdbool.h>
 
 /*
 ** Stack lib member types
 */
 
+#define VALUE_TYPE int
+
+typedef VALUE_TYPE	t_val;
+
 typedef struct		s_stack
 {
-	int				*data;
-	size_t			lenght;
-	size_t			capacity;
+	// simple array
+	//int				*data;
+	//size_t			lenght;
+	//size_t			capacity;
+
+	// circular array
+	t_val				*start_alloc;
+	t_val				*esp;
+	t_val				*ebp;
+	t_val				*end_alloc;
 }					t_stack;
 
 typedef void (*const t_operation)(t_stack*, t_stack*);
@@ -32,7 +49,8 @@ typedef void (*const t_operation)(t_stack*, t_stack*);
 ** Memory handlers
 */
 
-void				*stack_init(t_stack *const target, const char **raw);
+bool				stack_init_unsorted(t_stack *const target, const char **raw, size_t lenght);
+bool				stack_init_auxliar(t_stack *const target, size_t lenght);
 void				stack_clear(t_stack *target);
 
 /*
